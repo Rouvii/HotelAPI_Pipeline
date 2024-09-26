@@ -1,0 +1,22 @@
+GET {{URL}}/hotel
+
+###
+
+POST {{URL}}/hotel
+Content-Type: application/json
+
+
+{
+  "name": "Test Hotel",
+  "address": "123 Test Street",
+  "rooms": [
+    {
+      "roomNumber": 101,
+      "price": 200
+    },
+    {
+      "roomNumber": 102,
+      "price": 200
+    }
+  ]
+}
