@@ -97,7 +97,8 @@ public class HibernateConfig {
     }
 
     private static void getAnnotationConfiguration(Configuration configuration) {
-
+        configuration.addAnnotatedClass(dk.lyngby.model.Hotel.class);
+        configuration.addAnnotatedClass(dk.lyngby.model.Room.class);
 
     }
 
