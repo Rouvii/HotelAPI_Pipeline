@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.Set;
 
 public interface IDAO<T> {
-    T create(T t);
+    void create(T t);
     T getById(long id);
     List<T> getAll();
-    T update(T t);
-    T delete(T t);
+    void update(T t,T t2);
+    void delete(long id);
 
-    T deleteById(int id);
 }
