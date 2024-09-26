@@ -1,0 +1,12 @@
+GET {{URL}}/room
+###
+POST {{URL}}/room
+Content-Type: application/json
+
+{
+  "number": "1",
+  "price": 100.0,
+  "hotelId": 1
+}
+
+

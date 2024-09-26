@@ -1,0 +1,17 @@
+POST{{URL}}/hotel
+Content-Type: application/json
+
+{
+    "name": "Hotel 1",
+    "address": "Address 1",
+    "rooms": [
+        {
+            "number": "1",
+            "price": 100.0
+        },
+        {
+            "number": "2",
+            "price": 200.0
+        }
+    ]
+}
