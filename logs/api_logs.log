@@ -1,0 +1,2 @@
+14:38:06.174 [JettyServerThreadPool-44] ERROR d.l.controller.DogControllerImpl - 400Unrecognized field "dogname" (class dk.lyngby.dto.DogDto), not marked as ignorable (4 known properties: "dogBreed", "dogAge", "dogGender", "dogName"])
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 2, column: 15] (through reference chain: dk.lyngby.dto.DogDto["dogname"])

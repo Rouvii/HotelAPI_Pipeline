@@ -1,0 +1,12 @@
+GET {{URL}}
+###
+POST {{URL}}/dog
+Content-Type: application/json
+
+{
+  "dogName": "Rouvi",
+  "dogAge": 3,
+  "dogBreed": "BULLDOG",
+  "dogGender": "FEMALE"
+}
+
