@@ -54,12 +54,26 @@ public class RoomDAO implements IDAO<Room> {
 
     }
 
+//    @Override
+//    public void delete(long id) {
+//        try(var em = emf.createEntityManager()){
+//            em.getTransaction().begin();
+//           Room room = em.find(Room.class, id);
+//              em.remove(room);
+//            em.getTransaction().commit();
+//        }
+//    }
+
+
+
     @Override
     public void delete(long id) {
-        try(var em = emf.createEntityManager()){
+        try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
-           Room room = em.find(Room.class, id);
-              em.remove(room);
+            Room room = em.find(Room.class, id);
+            if (room != null) {
+                em.remove(room);
+            }
             em.getTransaction().commit();
         }
     }

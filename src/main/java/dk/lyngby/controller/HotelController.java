@@ -106,6 +106,7 @@ public class HotelController {
             ctx.json(new Message(404,"Hotel not found"));
             return;
         }
+        hotelDAO.update(hotel,new Hotel(hotelDTO));
         ctx.res().setStatus(200);
     }
 
@@ -130,6 +131,11 @@ public class HotelController {
             ctx.status(404);
             ctx.json(new Message(404,"Hotel not found"));
             return;
+        }
+
+
+        for (Room room : hotel.getRooms()) {
+            roomDAO.delete(room.getId());
         }
         hotelDAO.delete(id);
         ctx.res().setStatus(204);

@@ -23,9 +23,9 @@ public class RoomRoute {
     public EndpointGroup getRoomRoutes(){
         return() -> {
             get("/", roomController::getAllRooms);
-            get("/{id}", roomController::getRoomById);
+            get("/find/{id}", roomController::getRoomById);
             post("/", roomController::createRoom);
-            put("/{id}", roomController::updateRoom);
+            put("/update/{id}", roomController::updateRoom);
             delete("/{id}", roomController::deleteRoom);
         };
     }

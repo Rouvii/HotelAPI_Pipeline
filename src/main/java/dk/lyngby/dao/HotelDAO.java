@@ -1,6 +1,7 @@
 package dk.lyngby.dao;
 
 import dk.lyngby.model.Hotel;
+import dk.lyngby.model.Room;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
