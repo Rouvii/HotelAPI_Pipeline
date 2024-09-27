@@ -23,7 +23,7 @@ public class Room {
     private int price;
 
    @ManyToOne
-    @JoinColumn(name = "hotel_id")
+    @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
     public Room(RoomDTO roomDTO) {

@@ -1,20 +1,31 @@
 GET {{URL}}/room
-
+//Get all rooms
 ###
 
 
 POST {{URL}}/room
 Content-Type: application/json
+//Create a room
+//Remember to match the hotel id with an existing hotel id
 
 {
-  "roomNumber": 101,
-  "price": 200,
+  "roomNumber": 69,
+  "price": 899,
   "hotel": {
-    "id": 1
+    "id": 3
   }
 }
 ###
 
-DELETE {{URL}}/room/1
-
+DELETE {{URL}}/room/5
+//Delete room by id
 ###
+
+PUT {{URL}}/room/update/6
+Content-Type: application/json
+//Update a room by id
+
+{
+  "roomNumber": 101,
+  "price": 2000
+}
