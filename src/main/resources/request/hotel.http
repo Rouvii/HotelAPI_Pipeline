@@ -1,17 +1,51 @@
-POST{{URL}}/hotel
+GET {{URL}}/hotel
+//Get all hotels
+
+###
+
+
+POST {{URL}}/hotel
 Content-Type: application/json
+//Create a hotel
 
 {
-    "name": "Hotel 1",
-    "address": "Address 1",
-    "rooms": [
-        {
-            "number": "1",
-            "price": 100.0
-        },
-        {
-            "number": "2",
-            "price": 200.0
-        }
-    ]
+  "name": "Test Hotel",
+  "address": "123 Test Street",
+  "rooms": [
+    {
+      "roomNumber": 101,
+      "price": 200
+    },
+    {
+      "roomNumber": 102,
+      "price": 200
+    }
+  ]
 }
+
+###
+
+
+GET {{URL}}/hotel/find/1
+//Get hotel by id
+
+
+###
+
+DELETE {{URL}}/hotel/2
+//Delete hotel by id
+//Delete all rooms through the room.http first before deleting the hotel!
+
+###
+
+PUT {{URL}}/hotel/update/3
+Content-Type: application/json
+//Update hotel by id
+//Update the rooms through the room.http if needed
+
+{
+  "name": "Hotel Updated",
+  "address": "123 Test Street"
+}
+
+###

@@ -4,6 +4,7 @@ import dk.lyngby.model.Room;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Rouvi
@@ -11,6 +12,7 @@ import java.util.List;
 
 
 public class RoomDAO implements IDAO<Room> {
+
     private final EntityManagerFactory emf;
 
     public RoomDAO(EntityManagerFactory emf) {
@@ -19,12 +21,11 @@ public class RoomDAO implements IDAO<Room> {
 
     @Override
     public void create(Room room) {
-        try(var em = emf.createEntityManager()){
-            em.getTransaction().begin();
-            em.persist(room);
-            em.getTransaction().commit();
-
-        }
+       try(var em = emf.createEntityManager()){
+              em.getTransaction().begin();
+              em.persist(room);
+              em.getTransaction().commit();
+       }
     }
 
     @Override
@@ -42,25 +43,39 @@ public class RoomDAO implements IDAO<Room> {
     }
 
     @Override
-    public void update(Room room, Room newRoom) {
+    public void update(Room room,Room updateRoom) {
         try(var em = emf.createEntityManager()){
             em.getTransaction().begin();
-            room.setNumber(newRoom.getNumber());
-            room.setPrice(newRoom.getPrice());
-            em.merge(room);
+          room.setRoomNumber(updateRoom.getRoomNumber());
+          room.setPrice(updateRoom.getPrice());
+          em.merge(room);
             em.getTransaction().commit();
-
         }
+
     }
+
+//    @Override
+//    public void delete(long id) {
+//        try(var em = emf.createEntityManager()){
+//            em.getTransaction().begin();
+//           Room room = em.find(Room.class, id);
+//              em.remove(room);
+//            em.getTransaction().commit();
+//        }
+//    }
+
+
 
     @Override
     public void delete(long id) {
-        try(var em = emf.createEntityManager()){
+        try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
             Room room = em.find(Room.class, id);
-            em.remove(room);
+            if (room != null) {
+                em.remove(room);
+            }
             em.getTransaction().commit();
-
         }
     }
+
 }

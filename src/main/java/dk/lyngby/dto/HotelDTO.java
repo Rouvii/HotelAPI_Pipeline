@@ -16,23 +16,22 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 public class HotelDTO {
-    private long id;
+    private Long id;
     private String name;
     private String address;
-    private Set<Room> rooms;
+    private Set<RoomDTO> rooms;
+    //private Set<Room> rooms;
 
 
     public HotelDTO(Hotel hotel) {
         this.id = hotel.getId();
         this.name = hotel.getName();
         this.address = hotel.getAddress();
-        this.rooms = hotel.getRooms();
+        this.rooms = hotel.getRooms().stream().map(RoomDTO::new).collect(Collectors.toSet());
+        //this.rooms = hotel.getRooms();
     }
 
- public List<HotelDTO> toHotelDTOList(List<Hotel> hotels) {
+    public static List<HotelDTO> toHotelDTOList(List<Hotel> hotels) {
         return hotels.stream().map(HotelDTO::new).toList();
     }
-
-
-
 }

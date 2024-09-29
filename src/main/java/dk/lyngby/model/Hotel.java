@@ -2,33 +2,28 @@ package dk.lyngby.model;
 
 import dk.lyngby.dto.HotelDTO;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.Set;
 
 /**
  * @author Rouvi
  */
 
+
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "hotels")
 public class Hotel {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     @Column(name = "hotel_id")
-    private long id;
-
+    private Long id;
     private String name;
-
     private String address;
 
-    @OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Room> rooms;
 
 
@@ -36,7 +31,7 @@ public class Hotel {
         this.id = hotelDTO.getId();
         this.name = hotelDTO.getName();
         this.address = hotelDTO.getAddress();
-        this.rooms = hotelDTO.getRooms();
     }
+
 
 }

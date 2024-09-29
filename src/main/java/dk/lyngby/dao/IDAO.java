@@ -7,8 +7,7 @@ public interface IDAO<T> {
     void create(T t);
     T getById(long id);
     List<T> getAll();
-    void update(T t,T newT);
+    void update(T t,T t2);
     void delete(long id);
-
 
 }

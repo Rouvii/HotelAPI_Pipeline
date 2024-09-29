@@ -1,30 +1,33 @@
 package dk.lyngby.dto;
 
+import dk.lyngby.model.Hotel;
 import dk.lyngby.model.Room;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 /**
- * RoomDTO class
+ * @author Rouvi
  */
-@Data
+
 @NoArgsConstructor
+@Data
 public class RoomDTO {
-    private long id;
-    private long hotelId;
-    private int number;
+    private Long id;
+    private Hotel hotel;
+    private int roomNumber;
     private int price;
 
     public RoomDTO(Room room) {
         this.id = room.getId();
-        this.hotelId = room.getHotel().getId();
-        this.number = room.getNumber();
+        this.hotel = room.getHotel();
+        this.roomNumber = room.getRoomNumber();
         this.price = room.getPrice();
     }
 
-    public List<RoomDTO> toRoomDTOList(List<Room> rooms) {
+    public static List<RoomDTO> toRoomDTOList(List<Room> rooms) {
         return rooms.stream().map(RoomDTO::new).toList();
     }
 }
