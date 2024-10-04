@@ -14,6 +14,7 @@ import dk.lyngby.security.exceptions.ValidationException;
 import dk.lyngby.util.Utils;
 
 
+
 import dk.lyngby.security.controllers.ISecurityController;
 
 import dk.bugelhartmann.ITokenSecurity;
@@ -25,11 +26,15 @@ import io.javalin.http.HttpStatus;
 import io.javalin.security.RouteRole;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import org.slf4j.Logger;
 
 import java.text.ParseException;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+
 import java.util.stream.Collectors;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Purpose: To handle security in the API
@@ -40,6 +45,7 @@ public class SecurityController implements ISecurityController {
     ITokenSecurity tokenSecurity = new TokenSecurity();
     private static ISecurityDAO securityDAO;
     private static SecurityController instance;
+    private static Logger logger = getLogger(SecurityController.class);
 
     private SecurityController() { }
 
@@ -87,6 +93,7 @@ public class SecurityController implements ISecurityController {
                         .put("username", created.getUsername()));
             } catch (EntityExistsException e) {
                 ctx.status(HttpStatus.UNPROCESSABLE_CONTENT);
+                logger.error("User already exists");
                 ctx.json(returnObject.put("msg", "User already exists"));
             }
         };
@@ -159,6 +166,7 @@ public class SecurityController implements ISecurityController {
             return tokenSecurity.createToken(user, ISSUER, TOKEN_EXPIRE_TIME, SECRET_KEY);
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("Could not create token");
             throw new ApiException(500, "Could not create token");
         }
     }

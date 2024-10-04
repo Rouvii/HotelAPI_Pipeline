@@ -22,6 +22,7 @@ public class SecurityRoutes {
             path("/auth", ()->{
                 get("/test", ctx->ctx.json(jsonMapper.createObjectNode().put("msg",  "Hello from Open")), Role.ANYONE);
                 post("/login", securityController.login(), Role.ANYONE);
+                before(securityController.authenticate()); // check if there is a valid token in the header
                 post("/register", securityController.register(), Role.ANYONE);
 //                post("/authenticate", securityController.authenticate());
 //                get("/logout", securityController.logout());
