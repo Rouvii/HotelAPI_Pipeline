@@ -4,6 +4,7 @@ import dk.lyngby.config.HibernateConfig;
 import dk.lyngby.controller.RoomController;
 import dk.lyngby.dao.HotelDAO;
 import dk.lyngby.dao.RoomDAO;
+import dk.lyngby.security.enums.Role;
 import io.javalin.apibuilder.EndpointGroup;
 import jakarta.persistence.EntityManagerFactory;
 import static io.javalin.apibuilder.ApiBuilder.*;
@@ -23,10 +24,10 @@ public class RoomRoute {
     public EndpointGroup getRoomRoutes(){
         return() -> {
             get("/", roomController::getAllRooms);
-            get("/find/{id}", roomController::getRoomById);
-            post("/", roomController::createRoom);
-            put("/update/{id}", roomController::updateRoom);
-            delete("/{id}", roomController::deleteRoom);
+            get("/find/{id}", roomController::getRoomById, Role.ADMIN);
+            post("/", roomController::createRoom, Role.ADMIN);
+            put("/update/{id}", roomController::updateRoom, Role.ADMIN);
+            delete("/{id}", roomController::deleteRoom, Role.ADMIN);
         };
     }
 }

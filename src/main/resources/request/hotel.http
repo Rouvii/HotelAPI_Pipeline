@@ -1,11 +1,33 @@
+### A simple get request to the test endpoint. No need for login
+GET {{URL}}/auth/test
+
+### Create a new user - this one will only get a USER role by default
+POST {{URL}}/auth/register
+
+{
+    "username": "user",
+    "password": "test123"
+}
+
+###
+POST {{URL}}/auth/login
+
+{
+    "username": "admin",
+    "password": "test123"
+}
+
+> {% client.global.set("jwt_token", response.body.token); %}
+###
 GET {{URL}}/hotel
 //Get all hotels
 
 ###
 
-
 POST {{URL}}/hotel
 Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{jwt_token}}
 //Create a hotel
 
 {
