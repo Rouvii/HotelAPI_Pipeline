@@ -7,27 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HotelDAOTest {
 
-    @BeforeEach
-    void setUp() {
+    @Test
+    void fivePlusFive() {
+        assertEquals(10, 5 + 5);
     }
 
-    @Test
-    void create() {
-    }
 
-    @Test
-    void getById() {
-    }
-
-    @Test
-    void getAll() {
-    }
-
-    @Test
-    void update() {
-    }
-
-    @Test
-    void delete() {
-    }
 }
