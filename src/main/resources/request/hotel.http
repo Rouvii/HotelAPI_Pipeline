@@ -1,0 +1,73 @@
+### A simple get request to the test endpoint. No need for login
+GET {{URL}}/auth/test
+
+### Create a new user - this one will only get a USER role by default
+POST {{URL}}/auth/register
+
+{
+    "username": "user",
+    "password": "test123"
+}
+
+###
+POST {{URL}}/auth/login
+
+{
+    "username": "admin",
+    "password": "test123"
+}
+
+> {% client.global.set("jwt_token", response.body.token); %}
+###
+GET {{URL}}/hotel
+//Get all hotels
+
+###
+
+POST {{URL}}/hotel
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{jwt_token}}
+//Create a hotel
+
+{
+  "name": "Test Hotel",
+  "address": "123 Test Street",
+  "rooms": [
+    {
+      "roomNumber": 101,
+      "price": 200
+    },
+    {
+      "roomNumber": 102,
+      "price": 200
+    }
+  ]
+}
+
+###
+
+
+GET {{URL}}/hotel/find/1
+//Get hotel by id
+
+
+###
+
+DELETE {{URL}}/hotel/2
+//Delete hotel by id
+//Delete all rooms through the room.http first before deleting the hotel!
+
+###
+
+PUT {{URL}}/hotel/update/3
+Content-Type: application/json
+//Update hotel by id
+//Update the rooms through the room.http if needed
+
+{
+  "name": "Hotel Updated",
+  "address": "123 Test Street"
+}
+
+###
